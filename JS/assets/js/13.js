@@ -40,7 +40,7 @@ l(google);
 --------------------------------------*/
 
 /**
- * Nous allons utiliser 2 méthodes :
+ * Nous allons utiliser 2 étapes :
  * 
  * 1. La fonction document.createElement() va permettre de générer
  * un nouvel élément dans le DOM ; que je pourrai modifier par la suite
