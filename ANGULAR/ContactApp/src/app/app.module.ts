@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import { ProfilComponent } from './profil/profil.component';
 import { AjouterComponent } from './ajouter/ajouter.component';
+import {HttpClientModule} from '@angular/common/http';
+import {UserApiService} from './shared/services/user-api.service';
 
 
 @NgModule({
@@ -16,9 +18,12 @@ import { AjouterComponent } from './ajouter/ajouter.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

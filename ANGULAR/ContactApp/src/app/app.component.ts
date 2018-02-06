@@ -3,8 +3,9 @@
  * notre application, on importe "Component"
  * via @angular/core
  */
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Contact } from './shared/models/contact';
+import {UserApiService} from './shared/services/user-api.service';
 
 /**
  * @Component est ce qu'on appelle un décorateur.
@@ -39,7 +40,8 @@ import { Contact } from './shared/models/contact';
  * son comportement. Dans le contexte MV VM, notre classe
  * correspond au ViewModel.
  */
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private userApiService: UserApiService) {}
 
   // -- Déclaration d'une Variable Titre
   title: string = 'Gestion de mes Contacts';
@@ -75,6 +77,15 @@ export class AppComponent {
       email     : 'j.chemla@hl-media.fr'
     }
   ];
+
+  ngOnInit(): void {
+    this.userApiService.getContacts().subscribe(
+      contacts => {
+        // console.log(contacts);
+        this.mesContacts = contacts;
+      }
+    );
+  }
 
   /**
    * Ma fonction choisir contact, prend un contact
