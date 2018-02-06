@@ -86,4 +86,11 @@ export class AppComponent {
     console.log(this.contactActif);
   }
 
+  ajouterContactDansListe(event) {
+    const leContact: Contact = event.leContact;
+    let id: number = this.mesContacts.length;
+    leContact.id = id += 1;
+    this.mesContacts.push(leContact);
+  }
+
 }
