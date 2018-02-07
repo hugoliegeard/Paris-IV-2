@@ -6,6 +6,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Contact } from './shared/models/contact';
 import {UserApiService} from './shared/services/user-api.service';
+import {UserStorageService} from './shared/services/user-storage.service';
 
 /**
  * @Component est ce qu'on appelle un décorateur.
@@ -41,7 +42,9 @@ import {UserApiService} from './shared/services/user-api.service';
  * correspond au ViewModel.
  */
 export class AppComponent implements OnInit {
-  constructor(private userApiService: UserApiService) {}
+
+  constructor(private userApiService: UserApiService,
+              private userStorageService: UserStorageService) {}
 
   // -- Déclaration d'une Variable Titre
   title: string = 'Gestion de mes Contacts';
@@ -57,7 +60,8 @@ export class AppComponent implements OnInit {
     email     : 'wf3@hl-media.fr'
   };
 
-  mesContacts: Contact[] = [
+  mesContacts: Contact[] = [];
+/*  mesContacts: Contact[] = [
     {
       id        : 1,
       name      : 'Hugo LIEGEARD',
@@ -76,15 +80,21 @@ export class AppComponent implements OnInit {
       username  : 'jonathanchemla',
       email     : 'j.chemla@hl-media.fr'
     }
-  ];
+  ];*/
 
   ngOnInit(): void {
-    this.userApiService.getContacts().subscribe(
+    /*this.userApiService.getContacts().subscribe(
       contacts => {
         // console.log(contacts);
         this.mesContacts = contacts;
       }
-    );
+    );*/
+    // this.userStorageService.getContacts().subscribe(
+    //   contacts => {
+    //     this.mesContacts = contacts;
+    //   }
+    // );
+    this.mesContacts = this.userStorageService.getContacts();
   }
 
   /**
@@ -102,6 +112,11 @@ export class AppComponent implements OnInit {
     let id: number = this.mesContacts.length;
     leContact.id = id += 1;
     this.mesContacts.push(leContact);
+    this.userStorageService.save(this.mesContacts);
+  }
+
+  saveContact() {
+    this.userStorageService.save(this.mesContacts);
   }
 
 }

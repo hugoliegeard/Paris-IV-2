@@ -8,6 +8,8 @@ import { ProfilComponent } from './profil/profil.component';
 import { AjouterComponent } from './ajouter/ajouter.component';
 import {HttpClientModule} from '@angular/common/http';
 import {UserApiService} from './shared/services/user-api.service';
+import {AsyncLocalStorageModule} from 'angular-async-local-storage';
+import {UserStorageService} from './shared/services/user-storage.service';
 
 
 @NgModule({
@@ -19,10 +21,12 @@ import {UserApiService} from './shared/services/user-api.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AsyncLocalStorageModule
   ],
   providers: [
-    UserApiService
+    UserApiService,
+    UserStorageService
   ],
   bootstrap: [AppComponent]
 })

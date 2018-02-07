@@ -25,7 +25,7 @@
       <app-ajouter (unContactEstCree)="ajouterContactDansListe($event)"></app-ajouter>
     </div>
     <div class="col-sm-8">
-      <app-profil [contact]="contactActif"></app-profil>
+      <app-profil [contact]="contactActif" (userhasbeenchanged)="saveContact()"></app-profil>
     </div>
   </div>
   <!--<pre>-->
